@@ -62,6 +62,18 @@ class LlinksController < ApplicationController
     end
   end
 
+  def upvote
+    @llink = Llink.find(params[:id])
+    @llink.upvote_by current_user
+    redirect_back fallback_location: root_path
+  end
+
+  def downvote
+    @llink = Llink.find(params[:id])
+    @llink.downvote_by current_user
+    redirect_back fallback_location: root_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_llink
@@ -72,4 +84,6 @@ class LlinksController < ApplicationController
     def llink_params
       params.require(:llink).permit(:title, :url)
     end
+
+   
 end

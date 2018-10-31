@@ -1,11 +1,21 @@
-<% @llinks.each  do |llink| %>
+<% @llinks.each do |llink| %>
   <div class="link row clearfix">
     <h2>
-      <%= link_to llink.title, llink %><br>
-      <small class="author">Submitted <%= time_ago_in_words(llink.created_at) %> by <%= llink.user.email %> </small>
+        <%= link_to llink.title, llink %><br>
+        <small class="author">Submitted <%= time_ago_in_words(llink.created_at) %> by <%= llink.user.email %></small>
     </h2>
-  </div>
-<% end %>
-
-  
-
+<div class="btn-group">
+      <a class="btn btn-default btn-sm" href="<%= llink.url %>">Visit Link</a>
+      <%= link_to like_llink_path(llink), method: :put, class: "btn btn-default btn-sm" do %>
+      <span class="glyphicon glyphicon-chevron-up"></span>
+      Upvote
+      <%= llink.get_upvotes.size %>
+      <% end %>
+      <%= link_to dislike_llink_path(llink), method: :put, class: "btn btn-default btn-sm" do %>
+      <span class="glyphicon glyphicon-chevron-down"></span>
+      Downvote
+      <%= llink.get_downvotes.size %>
+       <% end %>
+    </div>
+   </div>
+  <% end %>
