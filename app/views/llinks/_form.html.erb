@@ -1,27 +1,24 @@
 <%= form_with(model: llink, local: true) do |form| %>
   <% if llink.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(llink.errors.count, "error") %> prohibited this llink from being saved:</h2>
-
-      <ul>
+      <h2><%= pluralize(llink.errors.count, "error") %> prohibited this link from being saved:</h2>
+<ul>
       <% llink.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+<div class="form-group">
+    <%= form.label :title %><br>
+    <%= form.text_field :title, class: "form-control" %>
   </div>
-
-  <div class="field">
-    <%= form.label :url %>
-    <%= form.text_field :url %>
+<div class="form-group">
+    <%= form.label :url %><br>
+    <%= form.text_field :url, class: "form-control" %>
   </div>
-
+  <br>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Submit", class: "btn btn-kg btn-primary" %>
   </div>
 <% end %>
