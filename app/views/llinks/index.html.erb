@@ -17,13 +17,13 @@
         <td><%= llink.title %></td>
         <td><%= llink.url %></td>
         <td><%= link_to 'Show', llink %></td>
+       <% if llink.user == current_user %>
         <td><%= link_to 'Edit', edit_llink_path(llink) %></td>
         <td><%= link_to 'Destroy', llink, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <% end %> </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Llink', new_llink_path %>

@@ -1,5 +1,6 @@
 class LlinksController < ApplicationController
   before_action :set_llink, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /llinks
   # GET /llinks.json
@@ -14,7 +15,7 @@ class LlinksController < ApplicationController
 
   # GET /llinks/new
   def new
-    @llink = Llink.new
+    @llink = current_user.llinks.build
   end
 
   # GET /llinks/1/edit
@@ -24,7 +25,7 @@ class LlinksController < ApplicationController
   # POST /llinks
   # POST /llinks.json
   def create
-    @llink = Llink.new(llink_params)
+    @llink = current_user.llinks.build(llink_params)
 
     respond_to do |format|
       if @llink.save
